@@ -68,16 +68,6 @@ sudo systemctl start redshift
 yay -S code
 
 # SSH
-echo "add_key()" >> ~/.bashrc
-echo "{" >> ~/.bashrc
-echo "  if [ -z "$SSH_AUTH_SOCK" ] ; then" >> ~/.bashrc
-echo "      eval `ssh-agent -s`" >> ~/.bashrc
-echo "  fi" >> ~/.bashrc
-echo "  ssh-add" >> ~/.bashrc
-echo "}" >> ~/.bashrc
-
-echo "alias ssh-add=add_key" >> ~/.bashrc
-
 ssh-keygen -o -a 100 -t ed25519
 
 source ~/.bashrc
