@@ -12,7 +12,7 @@ sudo pacman -Syu
 timedatectl set-local-rtc 1 --adjust-system-clock
 
 # Git
-sudo pacman -S gvim yay git
+sudo pacman -S gvim yay git xclip
 echo "Enter your email"
 read email
 git config --global user.email "\"${email}\""
@@ -59,18 +59,24 @@ yay -S nvm
 source /usr/share/nvm/init-nvm.sh
 nvm install `nvm ls-remote | tail -n 1`
 npm i -g eslint typescript
+echo 'source /usr/share/nvm/init-nvm.sh' >> ~/.bashrc
 
 # VS Code
 yay -S code
 
 # SSH
 ssh-keygen -o -a 100 -t ed25519
+echo "alias sk='eval \\\`ssh-agent -s\\\` && ssh-add'"
 
 # Redshift
 sudo pacman -S redshift
 mkdir ~/.config/redshift
 cat "${DIR}/redshift.conf" > ~/.config/redshift/redshift.conf
 echo "Please autostart redshift"
+
+# Xclip
+echo "alias c='xclip -selection clipboard'" >> ~/.bashrc
+echo "alias v='xclip  -selection clipboard -o'" >> ~/.bashrc
 
 source ~/.bashrc
 
