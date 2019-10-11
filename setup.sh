@@ -22,16 +22,16 @@ git config --global user.name "\"${name}\""
 
 # Vim
 yay -S vundle
-git clone https://github.com/JustinKnueppel/Vim-RC.git
-mv Vim-RC/.vimrc ~/.vimrc
-rm -rf Vim-RC
+mkdir ~/.dotfiles
+git clone https://github.com/JustinKnueppel/Vim-RC.git ~/.dotfiles/Vim-RC
+ln -s ~/.dotfiles/Vim-RC/.vimrc ~/.vimrc
 vim -c VundleUpdate -c quitall
 
 echo "export VISUAL=vim" >> ~/.bashrc
 echo "export EDITOR=\$VISUAL" >> ~/.bashrc
 
 # Git utilities
-mkdir Coding
+mkdir ~/Coding
 git clone https://github.com/JustinKnueppel/Git-Utilities.git ~/Coding/Git-Utilities
 cd ~/Coding/Git-Utilities
 git remote set-url origin git@github.com:JustinKnueppel/Git-Utilities.git 
@@ -44,11 +44,10 @@ echo "alias ugl=~/Coding/Git-Utilities/UpdateGitList.sh" >> ~/.bashrc
 # Python environment
 pip install --upgrade --user pip
 mkdir ~/Backups
-pip freeze > ~/Backups/baserequirements.txt
-pip install --user virtualenv
+pip freeze > ~/Backups/requirements.txt.bak
 mkdir venv
 cd venv
-python -m virtualenv general
+python -m venv general
 cd
 echo "alias general='source ~/venv/general/bin/activate'" >> ~/.bashrc
 activate ~/venv/general/bin/activate
@@ -57,8 +56,8 @@ deactivate
 
 # Node
 yay -S nvm
-nvm install-latest-npm
 source /usr/share/nvm/init-nvm.sh
+nvm install `nvm ls-remote | tail -n 1`
 npm i -g eslint typescript
 
 # VS Code
