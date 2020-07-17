@@ -1,5 +1,7 @@
 ---
 - hosts: manjaro
   roles:
+    - manjaro
     - common
+    - zsh
 ...

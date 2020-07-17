@@ -1,5 +1,7 @@
 ---
   - hosts: debian
     roles:
+      - debian
       - common
+      - zsh
 ...

@@ -1,54 +1,31 @@
 ---
-- name: Update apt repo and cache
-  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
-
-- name: Upgrade all packages
-  apt: upgrade=dist force_apt_get=yes
-
-- name: Install packages
-  apt:
-    name: {{ item }}
-    state: present
-    with_items:
-      - zsh
-      - vim
-      - git
-      - redshift
-      - docker
-      - docker-compose
-
-- name: Check if prezto is downloaded
+- name: Check if dotfiles are downloaded
   stat:
-    path: ~/.zprezto
-  register: file_exists
+    path: ~/.dotfiles
+  register: dotfiles_dir
 
 - name: Download prezto
   git:
-    repo: https://github.com/sorin-ionescu/prezto.git
-    dest: ~/.zprezto
+    repo: https://github.com/JustinKnueppel/dotfiles.git
+    dest: ~/.dotfiles
     recursive: yes
-  when: file_exists.stat.exists
-  
-- name: Link config files
-  script: copy_zsh_files.zsh
-  args:
-    executable: /usr/bin/env zsh
-  
-- name: Edit preferences
-  script: edit_zprezto.sh
-  args:
-    executable: /usr/bin/env bash
+  when: dotfiles_dir.stat.exists == False
 
-- name: zsh facts
-  shell: 'echo $SHELL'
-  register: default_shell
-  # changed when determines when will this task be considered changed when running
-  # ansible. In this case, we want it to always be false, as we are just
-  # retrieving information.
-  changed_when: False
-  sudo: no
+- name: Link dotfiles
+  shell: ~/.dotfiles/init.sh
+  executable: /usr/bin/env bash
 
-- name: Make zsh default
-  shell: chsh -s /bin/zsh
-  when: default_shell.stdout.find('/bin/zsh') == -1
+- name: Check if vundle is downloaded
+  stat:
+    path: ~/.vim/bundle/Vundle.vim
+  register: vundle_dir
+
+- name: Install vundle
+  git:
+    repo: https://github.com/VundleVim/Vundle.vim.git
+    dest: ~/.vim/bundle/Vundle.vim
+  when: vundle_dir.stat.exists == False
+
+- name: Install vundle extensions
+  shell: vim +PluginInstall +qall
 ...
