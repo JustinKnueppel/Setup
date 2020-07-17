@@ -1,31 +1,29 @@
 ---
-- name: Check if dotfiles are downloaded
-  stat:
-    path: ~/.dotfiles
-  register: dotfiles_dir
+  # - name: Check if dotfiles are downloaded
+  #   stat:
+  #     path: ~/.dotfiles
+  #   register: dotfiles_dir
 
-- name: Download prezto
-  git:
-    repo: https://github.com/JustinKnueppel/dotfiles.git
-    dest: ~/.dotfiles
-    recursive: yes
-  when: dotfiles_dir.stat.exists == False
+  - name: Download prezto
+    git:
+      repo: https://github.com/JustinKnueppel/dotfiles.git
+      dest: ~/.dotfiles
+      # recursive: yes
+    # when: dotfiles_dir.stat.exists == False
+  - name: Link dotfiles
+    shell: ~/.dotfiles/init.sh
 
-- name: Link dotfiles
-  shell: ~/.dotfiles/init.sh
-  executable: /usr/bin/env bash
+  # - name: Check if vundle is downloaded
+  #   stat:
+  #     path: ~/.vim/bundle/Vundle.vim
+  #   register: vundle_dir
 
-- name: Check if vundle is downloaded
-  stat:
-    path: ~/.vim/bundle/Vundle.vim
-  register: vundle_dir
+  - name: Install vundle
+    git:
+      repo: https://github.com/VundleVim/Vundle.vim.git
+      dest: ~/.vim/bundle/Vundle.vim
+    # when: vundle_dir.stat.exists == False
 
-- name: Install vundle
-  git:
-    repo: https://github.com/VundleVim/Vundle.vim.git
-    dest: ~/.vim/bundle/Vundle.vim
-  when: vundle_dir.stat.exists == False
-
-- name: Install vundle extensions
-  shell: vim +PluginInstall +qall
+  - name: Install vundle extensions
+    shell: vim +PluginInstall +qall
 ...
