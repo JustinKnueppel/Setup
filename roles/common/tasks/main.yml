@@ -1,0 +1,56 @@
+---
+- name: update
+  apt:
+  - name: Update apt repo and cache
+    apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+
+  - name: Upgrade all packages
+    apt: upgrade=dist force_apt_get=yes
+
+  - name: Install packages
+    apt:
+      name: {{ item }}
+      state: present
+      with_items:
+        - zsh
+        - vim
+        - git
+        - redshift
+        - docker
+        - docker-compose
+
+  - name: Check if prezto is downloaded
+    stat:
+      path: ~/.zprezto
+    register: file_exists
+  
+  - name: Download prezto
+    git:
+      repo: https://github.com/sorin-ionescu/prezto.git
+      dest: ~/.zprezto
+      recursive: yes
+    when: file_exists.stat.exists
+    
+  - name: Link config files
+    script: copy_zsh_files.zsh
+    args:
+      executable: /usr/bin/env zsh
+    
+  - name: Edit preferences
+    script: edit_zprezto.sh
+    args:
+      executable: /usr/bin/env bash
+  
+  - name: zsh facts
+    shell: 'echo $SHELL'
+    register: default_shell
+    # changed when determines when will this task be considered changed when running
+    # ansible. In this case, we want it to always be false, as we are just
+    # retrieving information.
+    changed_when: False
+    sudo: no
+
+  - name: Make zsh default
+    shell: chsh -s /bin/zsh
+    when: default_shell.stdout.find('/bin/zsh') == -1
+...

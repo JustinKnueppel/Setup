@@ -1,0 +1,5 @@
+---
+  - hosts: debian
+    roles:
+      - common
+...

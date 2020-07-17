@@ -1,0 +1,5 @@
+---
+- hosts: manjaro
+  roles:
+    - common
+...
