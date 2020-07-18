@@ -31,6 +31,8 @@
   # sudo: no
 
 - name: Make zsh default
+  become: yes
+  become_method: su
   user:
     name: "{{ ansible_user_id }}"
     shell: /bin/zsh
