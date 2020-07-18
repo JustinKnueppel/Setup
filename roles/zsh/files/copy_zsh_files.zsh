@@ -1,6 +1,7 @@
 #! /usr/bin/env zsh
 
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+for rcfile in $(cd "$HOME"/.zprezto/runcoms/ && ls | grep "z"); do
+  if [ ! -e "$HOME/.${rcfile}" ]; then
+    ln -s "$rcfile" "$HOME/.${rcfile}"
+  fi
 done
