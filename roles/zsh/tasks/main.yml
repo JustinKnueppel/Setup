@@ -1,15 +1,15 @@
 ---
-# - name: Check if prezto is downloaded
-#   stat:
-#     path: ~/.zprezto
-#   register: file_exists
+- name: Check if prezto is downloaded
+  stat:
+    path: ~/.zprezto
+  register: file_exists
 
 - name: Download prezto
   git:
     repo: https://github.com/sorin-ionescu/prezto.git
     dest: ~/.zprezto
     recursive: yes
-  # when: file_exists.stat.exists == False
+  when: file_exists.stat.exists == False
   
 - name: Link config files
   script: copy_zsh_files.zsh
@@ -31,6 +31,7 @@
   # sudo: no
 
 - name: Make zsh default
-  shell: chsh -s /bin/zsh
-  when: default_shell.stdout.find('/bin/zsh') == -1
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /bin/zsh
 ...
