@@ -2,16 +2,13 @@
 - name: Update apt repo and cache
   apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
   become: yes
-  become_method: su
 
 - name: Upgrade all packages
   apt: upgrade=dist force_apt_get=yes
   become: yes
-  become_method: su
 
 - name: Install packages
   become: yes
-  become_method: su
   apt:
     name: ["zsh", "tmux", "htop", "vim", "git", "docker", "docker-compose"]
     state: present

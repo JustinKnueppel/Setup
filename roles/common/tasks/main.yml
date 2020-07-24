@@ -12,6 +12,8 @@
     # when: dotfiles_dir.stat.exists == False
   - name: Link dotfiles
     shell: ~/.dotfiles/init.sh
+    args:
+      executable: /bin/bash
 
   # - name: Check if vundle is downloaded
   #   stat:
