@@ -2,6 +2,7 @@
   - hosts: debian
     roles:
       - debian
-      - common
+      - dotfiles
+      - vundle
       - zsh
 ...

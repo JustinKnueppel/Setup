@@ -2,6 +2,7 @@
 - hosts: manjaro
   roles:
     - manjaro
-    - common
+    - dotfiles
+    - vundle
     - zsh
 ...

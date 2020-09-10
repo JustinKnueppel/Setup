@@ -1,0 +1,12 @@
+---
+  - name: Download dotfiles
+    git:
+      repo: https://github.com/JustinKnueppel/dotfiles.git
+      dest: ~/.dotfiles
+      recursive: no
+
+  - name: Link dotfiles
+    shell: ~/.dotfiles/init.sh
+    args:
+      executable: /bin/bash
+...
