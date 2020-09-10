@@ -1,0 +1,8 @@
+---
+  - hosts: opensuse
+    roles:
+      - opensuse
+      - dotfiles
+      - vundle
+      - zsh
+...
