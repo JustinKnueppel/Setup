@@ -1,30 +1,19 @@
 ---
-  # - name: Check if dotfiles are downloaded
-  #   stat:
-  #     path: ~/.dotfiles
-  #   register: dotfiles_dir
-
-  - name: Download prezto
+  - name: Download dotfiles
     git:
       repo: https://github.com/JustinKnueppel/dotfiles.git
       dest: ~/.dotfiles
-      # recursive: yes
-    # when: dotfiles_dir.stat.exists == False
+      recursive: yes
+
   - name: Link dotfiles
     shell: ~/.dotfiles/init.sh
     args:
       executable: /bin/bash
 
-  # - name: Check if vundle is downloaded
-  #   stat:
-  #     path: ~/.vim/bundle/Vundle.vim
-  #   register: vundle_dir
-
   - name: Install vundle
     git:
       repo: https://github.com/VundleVim/Vundle.vim.git
       dest: ~/.vim/bundle/Vundle.vim
-    # when: vundle_dir.stat.exists == False
 
   - name: Install vundle extensions
     shell: vim +PluginInstall +qall
