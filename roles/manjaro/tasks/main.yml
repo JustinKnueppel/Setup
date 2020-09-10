@@ -1,0 +1,11 @@
+---
+- name: Update system
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install packages
+  pacman:
+    name: ["zsh", "tmux", "htop", "vim", "git", "docker", "docker-compose", "yay", "redshift"]
+    state: present
+...
