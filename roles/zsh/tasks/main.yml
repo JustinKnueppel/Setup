@@ -1,25 +1,14 @@
 ---
-- name: Check if prezto is downloaded
-  stat:
-    path: ~/.zprezto
-  register: file_exists
-
 - name: Download prezto
   git:
-    repo: https://github.com/sorin-ionescu/prezto.git
+    repo: https://github.com/JustinKnueppel/prezto.git
     dest: ~/.zprezto
     recursive: yes
-  when: file_exists.stat.exists == False
   
 - name: Link config files
   script: copy_zsh_files.zsh
   args:
     executable: /usr/bin/env zsh
-  
-- name: Edit preferences
-  script: edit_zprezto.sh
-  args:
-    executable: /usr/bin/env bash
 
 - name: Make zsh default
   become: yes
