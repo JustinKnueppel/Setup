@@ -10,6 +10,6 @@
 - name: Install packages
   become: yes
   apt:
-    name: ["zsh", "tmux", "htop", "vim", "git", "docker", "docker-compose"]
+    name: ["curl", "zsh", "tmux", "htop", "vim", "git", "docker", "docker-compose"]
     state: present
 ...
