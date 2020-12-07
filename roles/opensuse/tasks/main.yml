@@ -9,3 +9,4 @@
     name: ["zsh", "tmux", "htop", "vim", "git", "docker", "docker-compose", "redshift", "redshift-gtk", "python3-pip"]
     state: present
 ...
+

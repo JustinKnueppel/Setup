@@ -13,3 +13,4 @@
     name: ["curl", "zsh", "tmux", "htop", "vim", "git", "docker", "docker-compose"]
     state: present
 ...
+
