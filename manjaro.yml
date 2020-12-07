@@ -2,9 +2,11 @@
 - hosts: manjaro
   roles:
     - manjaro
+    - git
     - dotfiles
     - vundle
     - zsh
     - redshift
     - docker
 ...
+

@@ -2,9 +2,11 @@
   - hosts: opensuse
     roles:
       - opensuse
+      - git
       - dotfiles
       - vundle
       - zsh
       - redshift
       - docker
 ...
+

@@ -1,3 +1,4 @@
 [debian]
 debian1 ansible_ssh_host=192.168.1.31 ansible_ssh_port=22
 debian2 ansible_ssh_host=192.168.1.14 ansible_ssh_port=22
+
