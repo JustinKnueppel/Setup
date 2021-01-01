@@ -1,5 +1,5 @@
 ---
-  - hosts: debian
+  - hosts: raspberry_pis
     roles:
       - debian
       - git

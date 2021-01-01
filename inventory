@@ -1,5 +1,5 @@
 [raspberry_pis]
-pivpn ansible_ssh_host=hillcoat.ddnsfree.com ansible_ssh_port=1522
+pi4 ansible_ssh_host=192.168.1.39 ansible_ssh_port=22
 
 [debian_servers]
 homeserver ansible_ssh_host=hillcoat.ddnsfree.com ansible_ssh_port=22
