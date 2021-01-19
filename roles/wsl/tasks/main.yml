@@ -1,0 +1,10 @@
+---
+- name: Copy wsl.conf
+  become: yes
+  ansible.builtin.copy:
+      src: wsl.conf
+      dest: /etc/wsl.conf
+      owner: root
+      group: root
+      mode: '0644'
+

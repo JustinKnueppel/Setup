@@ -1,0 +1,13 @@
+---
+  - hosts:
+      - localhost
+    roles:
+      - debian
+      - wsl
+      - git
+      - dotfiles
+      - vundle
+      - zsh
+      - docker
+      - ssh
+
