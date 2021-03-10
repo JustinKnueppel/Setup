@@ -5,3 +5,4 @@ for rcfile in $(cd "$HOME"/.zprezto/runcoms/ && ls | grep "z"); do
     ln -s "$HOME/.zprezto/runcoms/$rcfile" "$HOME/.${rcfile}"
   fi
 done
+
