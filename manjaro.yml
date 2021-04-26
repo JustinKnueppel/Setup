@@ -5,6 +5,7 @@
     - git
     - dotfiles
     - vundle
+    - ssh
     - zsh
     - redshift
     - docker

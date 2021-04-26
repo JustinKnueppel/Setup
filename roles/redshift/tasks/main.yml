@@ -2,9 +2,9 @@
 - name: Copy redshift config to host
   copy:
     src: redshift.conf
-    dest: $HOME/.config/redshift.conf
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    dest: "{{ ansible_env.HOME }}/.config/redshift.conf"
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
     mode: 0644
 ...
 
