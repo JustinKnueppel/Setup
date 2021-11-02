@@ -1,0 +1,48 @@
+---
+- name: Update system
+  become: yes
+  dnf:
+    name: "*"
+    state: latest
+
+- name: Install packages
+  become: yes
+  dnf:
+    name:
+      - zsh
+      - tmux
+      - stow
+      - htop
+      - neovim
+      - ripgrep
+      - fd-find
+      - starship
+      - docker
+      - docker-compose
+    state: present
+
+# VS Code
+- name: Import VS Code GPG key
+  become: yes
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Copy yum repository
+  become: yes
+  ansible.builtin.copy:
+    src: vscode.repo
+    dest: /etc/yum.repos.d/vscode.repo 
+
+- name: Update yum repositories
+  become: yes
+  dnf:
+    update_cache: yes
+
+- name: Install VS Code
+  become: yes
+  dnf:
+    name: code
+    state: present
+...
+

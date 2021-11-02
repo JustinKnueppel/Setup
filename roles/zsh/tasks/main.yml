@@ -1,14 +1,14 @@
 ---
 - name: Download prezto
   git:
-    repo: https://github.com/JustinKnueppel/prezto.git
+    repo: https://github.com/sorin-ionescu/prezto.git
     dest: ~/.zprezto
     recursive: yes
   
-- name: Link config files
-  script: copy_zsh_files.zsh
-  args:
-    executable: /usr/bin/env zsh
+#- name: Link config files
+  #script: copy_zsh_files.zsh
+  #args:
+    #executable: /usr/bin/env zsh
 
 - name: Make zsh default
   become: yes

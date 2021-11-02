@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  roles:
+    - fedora
+    - git
+    - dotfiles
+    - ssh
+    - zsh
+    - docker
+...
+
