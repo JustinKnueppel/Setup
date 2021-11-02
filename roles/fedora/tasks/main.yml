@@ -11,12 +11,15 @@
     name:
       - zsh
       - tmux
+      - alacritty
       - stow
       - htop
       - neovim
       - ripgrep
       - fd-find
       - starship
+      - wl-clipboard
+      - zoxide
       - docker
       - docker-compose
     state: present
