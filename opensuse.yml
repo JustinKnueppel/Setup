@@ -1,12 +1,11 @@
 ---
-  - hosts: opensuse
+  - hosts: localhost
     roles:
       - opensuse
       - git
+      - ssh
       - dotfiles
-      - vundle
       - zsh
-      - redshift
       - docker
 ...
 
