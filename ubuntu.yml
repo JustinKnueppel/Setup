@@ -1,0 +1,11 @@
+---
+  - hosts: localhost
+    roles:
+      - ubuntu
+      - git
+      - dotfiles
+      - ssh
+      - zsh
+      - docker
+...
+
